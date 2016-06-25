@@ -5,4 +5,8 @@ $(document).ready(function() {
 		console.log($(window).height()/2);
 		$('.Center').css("margin-top", $(window).height()/2);		
 	});	
+
+	$('#text').one("focus", function(){
+		$(this).attr("value","");		
+	});
 });
