@@ -2,20 +2,31 @@
 	<head>
 		<title>Andrea</title>
 		<link rel="shortcut icon" href="Images/cutmypic.png" type="image/png">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>	
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>		
+
 		<script src="DynamicUi.js" type="text/javascript"></script>
+
+		<script src="UiData.js" type="text/javascript"></script>
+
 		<link rel="stylesheet" type="text/css" href="Andrea.css"/>
 	</head>
-	<body>
-		<img id="image" src="Images/read3.jpg"/>		
-		<div class="Center">
-			<div id="quote"></div>
-			<div class = "Search">
-				<form>
-					<input id="text" type="text" value="Look the Book!!"></input>
-					<div class="myButton">Search</div>
-				</form>
+	<body ng-app="AppSearchBook">
+		<div ng-controller="searchController">
+
+			<img id="image" ng-src="{{backgroundPhoto}}"/>		
+			<div class="Center">
+				<div id="quote">{{quote}}</div>
+				<div class = "Search">
+					<form>
+						<input id="text" type="text" value="Look the Book!!" ng-model="bookToSearch"></input>
+						<div class="myButton" ng-click="StartSearch(bookToSearch)">Search</div>
+					</form>					
+				</div>
 			</div>
+
 		</div>
 	</body>
 </html>
