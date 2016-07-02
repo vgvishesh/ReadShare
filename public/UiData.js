@@ -12,10 +12,18 @@ app.controller('searchController',['$scope','getFromServer', 'postToServer', fun
 		text: "Look the Book!!",
 	};
 
-	$scope.StartSearch = function(value)  {
+	$scope.StartSearch = function()  {
 		//console.log($scope.bookToSearch);
 		postToServer('http://127.0.0.1:8080/search', $scope.bookToSearch);
 	};
+
+	$scope.MonitorKeyStroke = function(keystroke) 
+	{
+		if(keystroke == 13)
+		{
+			$scope.StartSearch();
+		}
+	}
 }]);
 
 app.factory('getFromServer',['$http', function($http) {
