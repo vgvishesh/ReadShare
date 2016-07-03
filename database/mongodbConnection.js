@@ -7,6 +7,13 @@ var state = {
 	db:null,
 };
 
+function bookObject(user, book)
+{
+	this.name = book.name;	
+	this.author = book.author;	
+	this.user = user;
+}
+
 exports.connect = function (callback) 
 {
 	if(state.db)
@@ -19,27 +26,18 @@ exports.connect = function (callback)
 			return callback(err);
 		}
 
-		var collection = db.collection('books');
 		state.db = db;
 		callback();
 	});
 };
 
-exports.insertBooks = function (data, callback)
+exports.insertData = function (data, callback)
 {
 	if(!isValidDatabase(callback))
 		return;
 
-	var collection = state.db.collection('books');
-
-	collection.insert(data, function (err, result) 
-	{
-		if(err) 
-		{
-			callback(err);
-		}
-		return callback(null, result);
-	});
+	createUserDocuments(data, callback);	
+	createBookDocuments(data.user, data.books, callback);
 };
 
 exports.closeConnection = function (callback) 
@@ -71,6 +69,46 @@ exports.findBook = function (query, callback)
 	});
 }
 
+var createBookDocuments = function(user, booksData, callback)
+{
+	var books = state.db.collection('books');
+	var bookObjects = createObjectArray(user, booksData);
+
+	books.insert(bookObjects, function (err, result) 
+	{
+		if(err) 
+		{
+			callback(err);
+		}
+		return callback(null, result);
+	});
+}
+
+var createObjectArray = function (user, booksData)
+{
+	var bookObjects = [];
+	var dataSize = booksData.length;
+
+	for(var i = 0; i< dataSize; i++)
+	{
+		bookObjects.push(new bookObject(user, booksData[i]));
+	}
+
+	return bookObjects;
+}
+
+var createUserDocuments = function(data, callback)
+{
+	var users = state.db.collection('users');
+	users.insert(data, function (err, result)
+	{
+		if(err) 
+		{
+			callback(err);
+		}
+		return callback(null, result);	
+	});
+}
 
 var isValidDatabase = function (callback)
 {

@@ -32,7 +32,6 @@ app.get('/andrea.html', function (req, res) {
 })
 
 app.post('/search', function (req, res) {
-	console.log(req.body);
 	var searchQuery = req.body.text;
 	console.log('search query from the client is ' + req.body.text);
 	database.findBook(searchQuery, function (err, result)
@@ -43,8 +42,46 @@ app.post('/search', function (req, res) {
 			return;
 		}
 		console.log(result);
-	})
-})
+	});
+});
+
+
+// expecting the data to be format as : 
+// {
+// 		"user" : "vishesh",
+// 		"books" : [
+// 						{
+//           					"name" : "1000 splendid suns",
+//           					"author" : "author1"
+//           				},
+//           				{
+//           					"name" : "making of babaji inc.",
+//           					"author" : "author2"
+//           				},
+//           				{
+//           					"name" : "system programming",
+//           					"author" : "author3"
+//           				},
+//           				{
+//           					"name" : "algorithms",
+//           					"author" : "author4"
+//           				}          				 
+// 				]
+// }
+app.post('/insert', function (req, res)
+{
+	var data = req.body;
+	console.log(req.body);
+	database.insertData(data, function (err, result)
+	{		
+		if(err)
+		{
+			console.log(err);
+			return;
+		}
+		console.log(result);
+	});
+});
 
 var server = app.listen(8080, function() {
 	var host = server.address().address;
