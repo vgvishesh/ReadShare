@@ -21,3 +21,4 @@ CartSummary.prototype.getTax = function(state, done) {
 };
 
 module.exports = CartSummary;
+

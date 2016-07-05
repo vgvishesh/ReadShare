@@ -1,4 +1,5 @@
 module.exports = {
-  calculate: function() {
+  calculate: function(subtotal, state, done) {
+  	
   }
 };
