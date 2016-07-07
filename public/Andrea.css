@@ -24,6 +24,35 @@ body {
 	border: none;
 }
 
+#resultPageHeader {
+	padding : 1.5%;
+	background-color: red;
+}
+
+#resultBackground {
+	background-color: green;	
+	border-style: dotted;
+	border-color: black;
+	position: relative;	
+}
+
+#resultContainer {
+	border-style: dotted;
+	border-color : red;
+	margin-top: 2%;
+	width: 70%;
+	height: 100%;
+	margin : auto;
+	padding: 1.5%;
+	padding-top: 0.5%;
+}
+
+.SearchResults {
+	margin-top: 1.5%;
+	border-style: dotted;
+	border-color: white;
+}
+
 input[type=text] {
 	width: 50%;	
 	opacity: 0.7;	
