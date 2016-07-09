@@ -7,25 +7,14 @@
 
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>		
 
-		<script src="DynamicUi.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>		
 
 		<script src="AndreaController.js" type="text/javascript"></script>
 
 		<link rel="stylesheet" type="text/css" href="Andrea.css"/>
 	</head>
 	<body ng-app="AppSearchBook">
-		<div ng-controller="searchController">
-
-			<img id="image" ng-src="{{backgroundPhoto}}"/>		
-			<div class="Center">
-				<!--div id="quote">{{quote}}</div-->
-				<div class = "Search">
-					<form>
-						<input id="text" type="text" value="Look the Book!!" ng-model="bookToSearch.text" ng-keypress="MonitorKeyStroke($event.keyCode)"></input>
-						<div class="myButton" ng-click="StartSearch()">Search</div>
-					</form>					
-				</div>
-			</div>
+		<div ng-view>
 		</div>
 	</body>
 </html>

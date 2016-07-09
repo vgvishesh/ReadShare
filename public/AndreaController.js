@@ -1,6 +1,7 @@
-var app = angular.module('AppSearchBook', []);
+var app = angular.module('AppSearchBook', ['ngRoute']);
 app.controller('searchController',['$scope','getFromServer', 'postToServer', function ($scope, getFromServer, postToServer) {
 	
+	console.log("vishesh");
 	getFromServer("http://127.0.0.1:8080/backgroundimage").then(function(someData) {
 		$scope.backgroundPhoto = someData.image;
 		console.log($scope.backgroundPhoto);
@@ -54,4 +55,12 @@ app.factory('postToServer', ['$http', function($http) {
 			return err;
 		});		
 	}
+}]);
+
+app.config(['$routeProvider',function ($routeProvider) {
+	$routeProvider
+	.when('/', {
+		controller:'searchController',
+		templateUrl:'Views/FirstSearchPage.html'
+	});
 }]);
