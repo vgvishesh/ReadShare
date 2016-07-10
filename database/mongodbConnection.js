@@ -58,7 +58,7 @@ exports.findBook = function (query, callback)
 	if(!isValidDatabase(callback))
 		return;
 	var collection = state.db.collection('books');
-	collection.find({name : query}, function (err, result) 
+	collection.find({name : query}).toArray(function (err, result) 
 	{
 		if(err)
 		{

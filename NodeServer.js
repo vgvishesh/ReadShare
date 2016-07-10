@@ -42,6 +42,7 @@ app.post('/search', function (req, res) {
 			return;
 		}
 		console.log(result);
+		res.json(result);
 	});
 });
 

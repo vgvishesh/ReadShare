@@ -19,6 +19,8 @@ app.factory('postToServer', ['$http', function($http) {
 	{
 		console.log("postToServer: " + data);		
 		return $http.post(serverAddress, data).then(function Success(response) {
+			console.log("response from server " + response.data);
+			return response.data;
 		},
 		function Error(err)
 		{
