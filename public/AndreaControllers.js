@@ -1,4 +1,3 @@
-var app = angular.module('AppSearchBook', ['ngRoute']);
 app.controller('searchController',['$scope', '$location', 'getFromServer', 'postToServer', 'saveData', function ($scope, $location, getFromServer, postToServer, saveData) {
 	
 	getFromServer("http://127.0.0.1:8080/backgroundimage").then(function(someData) {
@@ -52,59 +51,3 @@ var getInitialDisplayText = function(saveDataService)
 function isEmpty(obj) {
     return (Object.getOwnPropertyNames(obj).length === 0);
 }
-
-app.factory('getFromServer',['$http', function($http) {
-	return function(serverAddress) 
-	{
-		return $http.get(serverAddress).then(function Success(response) 
-		{
-			console.log("getFromServer " + response.data);
-			return response.data;
-		}, 
-		function Error(err) 
-		{
-			console.log(err);			
-			return err;
-		});
-	}
-}]);
-
-app.factory('postToServer', ['$http', function($http) {
-	return function (serverAddress, data)
-	{
-		console.log("postToServer: " + data);		
-		return $http.post(serverAddress, data).then(function Success(response) {
-		},
-		function Error(err)
-		{
-			return err;
-		});		
-	}
-}]);
-
-
-app.factory('saveData', function() {
-	var savedData = {};
-	function set(data) {
-		savedData = data;
-	}
-	function get() {
-		return savedData;
-	}
-	return {
-		set: set,
-		get: get
-	}
-});
-
-app.config(['$routeProvider',function ($routeProvider) {
-	$routeProvider
-	.when('/', {
-		controller:'searchController',
-		templateUrl:'Views/FirstSearchPage.html'
-	})
-	.when('/results', {
-		controller:'searchController',
-		templateUrl:'Views/SearchResult.html'
-	});
-}]);
