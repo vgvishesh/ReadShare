@@ -33,10 +33,14 @@ app.controller('searchController', ['$scope', '$location', 'postToServer', 'save
 
 	var search = function() {
 		if($scope.bookToSearch.text != GetDefaultDiplayText()) {
+		
 			postToServer('http://127.0.0.1:8080/search', $scope.bookToSearch)
 			.then(function(responseData) {
-				// fill this function with the code to handle the response from server
 
+				if(isEmpty(responseData)) {
+					console.log("no data returned");
+				}
+				$scope.foundBooks = responseData;
 			});
 			console.log("bookName being searched : " + $scope.bookToSearch.text);
 		}

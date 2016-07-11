@@ -8,20 +8,11 @@
 </div>
 <div id="resultBackground">
 	<div id="resultContainer">
-		<div class="SearchResults">
-			Image</br>
-			BookName</br>
-			Author</br>
-			UserName</br>
-			ConnectWithUser</br>					
-		</div>
-		<div class="SearchResults">
-			Image</br>
-			BookName</br>
-			Author</br>
-			UserName</br>
-			ConnectWithUser</br>					
-		</div>
+		<div class="SearchResults" ng-repeat="book in foundBooks">
+			{{book.name}}</br>
+			{{book.author}}</br>
+			{{book.user}}</br>
+		</div>					
 	</div>
 </div>
 	
